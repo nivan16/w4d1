@@ -1,4 +1,5 @@
 require "byebug"
+
 class PolyTreeNode
   attr_reader :parent, :children, :value
 
@@ -59,107 +60,6 @@ end
 #######################################################################################################################
 #######################################################################################################################
 
-class KnightPathFinder
 
-  attr_accessor :start_pos, :previous_moves, :new_moves
-  
-  def self.root_node
-
-
-
-
-
-  end
-
-  def self.valid_moves?(pos)
-    idxs = (0..7).to_a
-    row, col = pos
-    return idxs.include?(row) && idxs.include?(col)
-  end
-  
-  def initialize(starting_position) ##[0, 0]
-    @start_pos = starting_position ## 
-    @considered_positions = [@start_pos]
-    @new_moves = []
-  end
-
-  def new_move_positions(pos) # [4,4]
-    potential_moves=[]
-    row, col = pos
-
-    new_rows = [row + 2, row - 2]
-    new_rows.each do |new_row|
-        col_1 = col - 1
-        col_2 = col + 1
-
-        potential_moves << [new_row, col_1]
-        potential_moves << [new_row, col_2]
-    end
-
-    new_cols = [col + 2, col - 2]
-    new_cols.each do |new_col|
-        row_1 = row - 1
-        row_2 = row + 1
-        
-        potential_moves << [row_1, new_col]
-        potential_moves << [row_2, new_col]
-    end
-
-     @new_moves = potential_moves.select do |a_move| #**************************** Note: need to change @start_pos to @current_pos(when we get to making @current_pos variable)!!!**********************
-      c_move = []
-      c_move << @start_pos[0] + a_move[0] #these two lines add the potential move from the current position to form the future position
-      c_move << @start_pos[1] + a_move[1]         #ex: [0,0] is current pos, and a_move is [-2, 1] so      (0 + -2) is the row, and (0 + 1) is the column
-      if KnightPathFinder.valid_moves?(a_move) && !@considered_positions.include?(a_move)
-        c_move
-      else
-
-      end
-    end
-     return @new_moves
-  end # end of new_move_positions method!!!!
-
-  def build_move_tree
-
-  end
-
-
-  # REVISIONS #################
-
-  MOVES = [
-        [2, -1],
-        [2, 1],
-        [-2, 1],
-        [-2, -1],
-        [-1, 2],
-        [-1, -2],
-        [1, 2],
-        [1, -2],
-    ]
-
-    def self.valid_moves(pos) # [1, -2]
-        # return all possible moves given any one position
-        # debugger
-        valid_moves = []
-        x, y = pos
-        MOVES.each do |(dx, dy)| # [2, 1]
-            next_move = [x + dx, y + dy]
-
-            if next_move.all? { |coord| coord.between?(0, 7) }
-                valid_moves << next_move
-            end
-        end
-
-        valid_moves
-    end
-
-
-
-
-
-
-
-
-
-end
 
 
