@@ -75,21 +75,20 @@ class KnightPathFinder
     trace_path_back(end_node)
   end
   
-  def trace_path_back(end_node)
-    return end_node.value if end_node.value == start_pos
-    paths = [end_node.value]
-    current_node = end_node
+  def trace_path_back(node)
+    return [node.value] if node.value == start_pos
+
+    current_node = node
+    paths = [current_node.value]
     current_parent = current_node.parent
-    paths << current_parent.value
-    trace_path_back(current_parent)
-    return paths << start_pos
-
-    
-
+    # paths << current_parent.value
+    trace_path_back(current_parent) + paths 
+    # paths << start_pos
+    # paths
   end
 
 
-end
+ end
 
 kpf = KnightPathFinder.new([0, 0])
 p kpf.find_path([7, 6]) # => [[0, 0], [1, 2], [2, 4], [3, 6], [5, 5], [7, 6]]
