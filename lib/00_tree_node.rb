@@ -123,6 +123,34 @@ class KnightPathFinder
   end
 
 
+  # REVISIONS #################
+
+  MOVES = [
+        [2, -1],
+        [2, 1],
+        [-2, 1],
+        [-2, -1],
+        [-1, 2],
+        [-1, -2],
+        [1, 2],
+        [1, -2],
+    ]
+
+    def self.valid_moves(pos) # [1, -2]
+        # return all possible moves given any one position
+        # debugger
+        valid_moves = []
+        x, y = pos
+        MOVES.each do |(dx, dy)| # [2, 1]
+            next_move = [x + dx, y + dy]
+
+            if next_move.all? { |coord| coord.between?(0, 7) }
+                valid_moves << next_move
+            end
+        end
+
+        valid_moves
+    end
 
 
 
